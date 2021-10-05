@@ -9,7 +9,7 @@ body
 {
     font-family: Helvetica, sans-serif;
     height: 100vh;
-    background: rgb(21, 21, 21);
+    background: #151515;
 }
 body{
     overflow-x: hidden;
@@ -17,11 +17,13 @@ body{
 
 .webgl
 {
+    background: #151515;
     position: absolute;
     top: 0;
     left: 0;
     outline: none;
-    mix-blend-mode: exclusion;
+    /*mix-blend-mode: exclusion;*/
+    cursor: crosshair;
 }
 
 .container{
@@ -30,10 +32,62 @@ body{
     place-items: center;
 }
 h1{
-    font-size: 8rem;
+
+    font-size: 7rem;
     text-transform: uppercase;
-    color:white;
+    color:#eae9e9;
+    z-index: 10;
+    cursor: crosshair;
 }
 section {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.navBar{
+    position: sticky;
+    top:0;
+    width: 100%;
+    height: 50px;
+    background: #eae9e9;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box  ;
+}
+.navItem{
+    display: inline-block;
+    height: 100%;
+    font-size: 25px;
+    color: #151515;
+    text-decoration: none;
+    text-transform: lowercase;
+    /*vertical-align: center;*/
+    font-weight: bold;
+
+    margin: 10px;
+}
+.navItem:not(:first-child){
+    float: right;
+}
+#contentContainer{
+
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: 90%;
+    max-width: 900px;
+    color: #eae9e9;
+
+}
+.content{
+    font-size: 20px;
+    margin: 40px;
+    width: 100%;
+    padding:10px;
+}
+.contentTitle{
+    margin: 10px 0 10px 0;
+}
+.contentBody{
+
 }

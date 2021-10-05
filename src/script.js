@@ -9,19 +9,17 @@ import {RectAreaLightUniformsLib} from 'three/examples/jsm/lights/RectAreaLightU
 RectAreaLightUniformsLib.init();
 
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-let fogColor = new THREE.Color(0x000000);
+let fogColor = new THREE.Color(0x151515);
 
 scene.background = fogColor;
 scene.fog = new THREE.Fog(fogColor, 3, 8);
-// scene.fog = new THREE.FogExp2(fogColor, 0.2);
-
 
 // Loading
 
@@ -55,7 +53,6 @@ let mirror = new Reflector(planeGeometry, {
     clipBias: 0.003,
     textureWidth: window.innerWidth * window.devicePixelRatio,
     textureHeight: window.innerHeight * window.devicePixelRatio,
-    color: 0xffffff
 })
 // mirror.position.z = -2.5
 mirror.position.y = -1.9
@@ -87,9 +84,7 @@ for (let i = 0; i < 3; i++) {
     x += 1.5
 }
 scene.add(sphereGroup)
-const centralEl = sphereGroup.children[5]
-const center = new THREE.Vector3(centralEl.x, centralEl.y, centralEl.z)
-// myGroup.applyMatrix( new THREE.Matrix4().makeTranslation(-centralEl.x, -centralEl.y, -centralEl.z));
+
 // Lights
 
 const pointLight = new THREE.PointLight(0xffffff, 20, 10)
@@ -136,8 +131,8 @@ scene.add(rectLight3);
 // scene.add( new RectAreaLightHelper( rectLight1 ) );
 // scene.add( new RectAreaLightHelper( rectLight2 ) );
 // scene.add( new RectAreaLightHelper( rectLight3 ) );
-// const ambientLight = new THREE.AmbientLight(0xffffff, 100)
-// scene.add(ambientLight)
+const ambientLight = new THREE.AmbientLight(0xffffff, 100)
+scene.add(ambientLight)
 /**
  * Sizes
  */
@@ -179,8 +174,7 @@ scene.add(camera)
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true
+    canvas: canvas
 })
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
@@ -229,7 +223,7 @@ const tick = () => {
         sphereGroup.rotation.y = .7 * -elapsedTime
         // sphereGroup.rotation.x = .5 * -elapsedTime
     sphereGroup.children.forEach((el,index) => {
-        el.rotation.y = .7 * elapsedTime
+        el.rotation.y = .7 * elapsedTime*2
         // el.rotation.x = .5 * elapsedTime
         el.position.y = Math.sin(elapsedTime/2-el.position.x-index)*0.9
         // console.log(el.key)
